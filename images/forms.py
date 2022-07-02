@@ -16,16 +16,15 @@ class ImageCreateForm(forms.ModelForm):
         valid_extensions = ['jpg', 'jpeg']
         extension = url.rsplit('.', 1)[1].lower()
         if extension not in valid_extensions:
-            raise forms.ValidationError('The given URL does not '\
+            raise forms.ValidationError('The given URL does not ' \
                                         'match valid image extensions.')
         return url
 
     def save(self, force_insert=False, force_update=False, commit=True):
         image = super(ImageCreateForm, self).save(commit=False)
         image_url = self.cleaned_data['url']
-        image_name = '{}.{}'.format(
-                                slugify(image.title),
-                                image_url.rsplit('.', 1)[1].lower())
+        image_name = '{}.{}'.format(slugify(image.title),
+                                    image_url.rsplit('.', 1)[1].lower())
 
         # download image from the given URL
         response = request.urlopen(image_url)
@@ -35,5 +34,3 @@ class ImageCreateForm(forms.ModelForm):
         if commit:
             image.save()
         return image
-
-

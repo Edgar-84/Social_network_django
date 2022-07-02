@@ -29,11 +29,11 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+NGROK = '3739-151-249-165-248.eu.ngrok.io'
 ALLOWED_HOSTS = ['mysite.com',
                  'localhost',
                  '127.0.0.1',
-                 'cf43-151-249-165-38.eu.ngrok.io'
+                 NGROK
 ]
 
 
@@ -152,4 +152,4 @@ AUTHENTICATION_BACKENDS = [
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
 
-CSRF_TRUSTED_ORIGINS = ['https://cf43-151-249-165-38.eu.ngrok.io']
+CSRF_TRUSTED_ORIGINS = ['https://' + NGROK]
