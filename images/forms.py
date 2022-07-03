@@ -3,7 +3,7 @@ from .models import Image
 from urllib import request
 from django.core.files.base import ContentFile
 from django.utils.text import slugify
-
+import requests
 
 class ImageCreateForm(forms.ModelForm):
     class Meta:
@@ -27,9 +27,9 @@ class ImageCreateForm(forms.ModelForm):
                                     image_url.rsplit('.', 1)[1].lower())
 
         # download image from the given URL
-        response = request.urlopen(image_url)
+        response = requests.get(image_url)
         image.image.save(image_name,
-                         ContentFile(response.read()),
+                         ContentFile(response.content),
                          save=False)
         if commit:
             image.save()
