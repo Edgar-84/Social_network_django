@@ -29,10 +29,11 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-NGROK = '3739-151-249-165-248.eu.ngrok.io'
+NGROK = '8a06-46-53-246-221.eu.ngrok.io'
 ALLOWED_HOSTS = ['mysite.com',
                  'localhost',
                  '127.0.0.1',
+                 '8a06-46-53-246-221.eu.ngrok.io',
                  NGROK
 ]
 
