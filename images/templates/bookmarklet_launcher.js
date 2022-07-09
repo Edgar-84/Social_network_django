@@ -4,6 +4,6 @@
     }
     else {
         document.body.appendChild(document.createElement('script'))
-        .src='https://8a06-46-53-246-221.eu.ngrok.io/static/js/bookmarklet.js?r='+Math.floor(Math.random()*99999999999999999999);
+        .src='https://5af4-46-53-243-32.eu.ngrok.io/static/js/bookmarklet.js?r='+Math.floor(Math.random()*99999999999999999999);
     }
 })();
