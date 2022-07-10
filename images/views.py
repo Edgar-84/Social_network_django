@@ -53,7 +53,7 @@ def image_like(request):
     action = request.POST.get('action')
     if image_id and action:
         try:
-            image = Image.objects.get('id')
+            image = Image.objects.get(id=image_id)
             if action == 'like':
                 image.users_like.add(request.user)
             else:
@@ -83,4 +83,3 @@ def image_list(request):
                       {'section': 'images', 'images': images})
     return render(request, 'images/image/list.html',
                   {'section': 'images', 'images': images})
-
