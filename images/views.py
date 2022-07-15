@@ -9,6 +9,13 @@ from actions.utils import create_action
 from common.decorators import ajax_required, is_ajax
 from .forms import ImageCreateForm
 from .models import Image
+import redis
+from django.conf import settings
+
+
+r = redis.StrictRedis(host=settings.REDIS_HOST,
+                      port=settings.REDIS_PORT,
+                      db=settings.REDIS_DB)
 
 
 @login_required
@@ -41,10 +48,10 @@ def image_create(request):
 
 def image_detail(request, id, slug):
     image = get_object_or_404(Image, id=id, slug=slug)
+    total_views = r.incr(f'image:{image.id}:views')
     return render(request,
                   'images/image/detail.html',
-                  {'section': 'images',
-                   'image': image})
+                  {'section': 'images', 'image': image, 'total_views': total_views})
 
 
 @ajax_required
