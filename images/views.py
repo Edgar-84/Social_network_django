@@ -1,3 +1,5 @@
+import redis
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -9,9 +11,6 @@ from actions.utils import create_action
 from common.decorators import ajax_required, is_ajax
 from .forms import ImageCreateForm
 from .models import Image
-import redis
-from django.conf import settings
-
 
 r = redis.StrictRedis(host=settings.REDIS_HOST,
                       port=settings.REDIS_PORT,
